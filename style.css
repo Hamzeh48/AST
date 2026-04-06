@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: gold;
   margin-top: 50px;
 }
 input {
@@ -17,5 +17,5 @@ button {
 }
 p {
   font-size: 18px;
-  color: #333;
+  color: red;
 }
