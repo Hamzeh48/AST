@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>لعبة التخمين</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>آلة حاسبة</title>
+<link rel="stylesheet" href="calculator.css">
 </head>
 <body>
-  <h1>لعبة التخمين الرقمي</h1>
-  <p>اختر رقمًا من 1 إلى 100</p>
-  <input type="number" id="guessInput" />
-  <button id="checkBtn">تحقق</button>
-  <p id="feedback"></p>
 
-  <script src="script.js"></script>
+<h2>آلة حاسبة بسيطة</h2>
+
+<div class="calculator">
+  <input type="text" id="display" disabled placeholder="0">
+
+  <div class="buttons">
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="chooseOperation('/')">÷</button>
+
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="chooseOperation('*')">×</button>
+
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="chooseOperation('-')">-</button>
+
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="appendNumber('.')">.</button>
+    <button onclick="compute()">=</button>
+    <button onclick="chooseOperation('+')">+</button>
+
+    <button onclick="clearDisplay()" class="span-two">C</button>
+  </div>
+</div>
+
+<script src="calculator.js"></script>
 </body>
 </html>
