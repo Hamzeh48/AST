@@ -1,21 +1,58 @@
-const secretNumber = Math.floor(Math.random() * 100) + 1;
-let attempts = 0;
+let display = document.getElementById('display');
+let currentOperand = '';
+let previousOperand = '';
+let operation = undefined;
 
-document.getElementById("checkBtn").addEventListener("click", function() {
-  const guess = Number(document.getElementById("guessInput").value);
-  const feedback = document.getElementById("feedback");
-  attempts++;
+function appendNumber(number) {
+  if (number === '.' && currentOperand.includes('.')) return;
+  currentOperand += number;
+  updateDisplay();
+}
 
-  if (!guess || guess < 1 || guess > 100) {
-    feedback.textContent = "ادخل رقم بين 1 و 100!";
-    return;
+function chooseOperation(op) {
+  if (currentOperand === '') return;
+  if (previousOperand !== '') {
+    compute();
   }
+  operation = op;
+  previousOperand = currentOperand;
+  currentOperand = '';
+}
 
-  if (guess === secretNumber) {
-    feedback.textContent = `مبروك! الرقم الصحيح هو ${secretNumber}. حاولت ${attempts} مرات.`;
-  } else if (guess < secretNumber) {
-    feedback.textContent = "الرقم أكبر!";
-  } else {
-    feedback.textContent = "الرقم أصغر!";
+function compute() {
+  let computation;
+  const prev = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return;
+  switch(operation) {
+    case '+':
+      computation = prev + current;
+      break;
+    case '-':
+      computation = prev - current;
+      break;
+    case '*':
+      computation = prev * current;
+      break;
+    case '/':
+      computation = prev / current;
+      break;
+    default:
+      return;
   }
-});
+  currentOperand = computation;
+  operation = undefined;
+  previousOperand = '';
+  updateDisplay();
+}
+
+function clearDisplay() {
+  currentOperand = '';
+  previousOperand = '';
+  operation = undefined;
+  updateDisplay();
+}
+
+function updateDisplay() {
+  display.value = currentOperand;
+}
